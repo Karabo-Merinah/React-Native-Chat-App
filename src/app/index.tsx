@@ -1,4 +1,3 @@
-import ChatItem from "@/components/chatItem"
 import ChatsBar from "@/components/ChatsBar"
 import ChatsList from "@/components/chatsList"
 import Header from "@/components/Header"

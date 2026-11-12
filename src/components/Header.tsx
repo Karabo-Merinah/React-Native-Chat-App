@@ -1,4 +1,4 @@
-import { EllipsisVerticalIcon, Search } from "lucide-react-native"
+import { EllipsisVerticalIcon, Search,CheckCheck} from "lucide-react-native"
 import { Pressable, StyleSheet, Text, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 

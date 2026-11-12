@@ -1,5 +1,6 @@
+import { CheckCheck } from "lucide-react-native"
 import { Image, ImageSourcePropType, StyleSheet, Text, View } from "react-native"
-import { PlusCircleIcon } from "lucide-react-native"
+
 
 interface Chats {
     id: number,
@@ -7,7 +8,8 @@ interface Chats {
     name: string,
     time: string,
     message: string,
-    count: number
+    count: number,
+    status: string
 }
 
 const ChatItem = ({ item }: { item: Chats }) => {
@@ -20,12 +22,16 @@ const ChatItem = ({ item }: { item: Chats }) => {
             </View>
             <View style={styles.right}>
                 <Text style={styles.time}>{item.time}</Text>
-                {item.count > 0 && (
-                    <View style={styles.messageCount}><Text style={styles.count}>{item.count}</Text></View>
+                {item.status === "read" && (
+                    <CheckCheck size={18} color="#F8641F" />
+                )}
+                {item.status === "unread" && item.count > 0 && (
+                    <View style={styles.messageCount}>
+                        <Text style={styles.count}>{item.count}</Text>
+                    </View>
                 )}
             </View>
         </View>
-
     )
 }
 
@@ -56,7 +62,7 @@ const styles = StyleSheet.create({
         color: "#222222"
     },
     message: {
-        fontSize: 14,
+        fontSize: 10,
         color: "gray"
     },
     messageAction: {
@@ -70,7 +76,7 @@ const styles = StyleSheet.create({
         color: "gray"
     },
     messageCount: {
-        backgroundColor: "#DE5B27",
+        backgroundColor: "#F8641F",
         borderRadius: 10,
         width: 20,
         height: 20,
