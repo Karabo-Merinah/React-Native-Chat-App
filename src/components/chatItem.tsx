@@ -12,24 +12,47 @@ interface Chats {
     status: string
 }
 
-const ChatItem = ({ item }: { item: Chats }) => {
+const ChatItem = ({ item, index }: { item: Chats, index: number }) => {
+
+    // display the original message 
+    let message = <Text>{item.message}</Text>
+
+    // highlights the typing message for the first chat
+    if (index === 0) {
+        message = <Text style={styles.coloredText}>{item.message}</Text>
+    }
+    // highlight only "Faza" in the second chat
+    if (index === 1) {
+        message = (<Text>
+            <Text style={styles.coloredText}>Faza</Text>
+            {/* remove the first 4 characters to avoid repeating "Faza" */}
+            {item.message.substring(4)}
+        </Text>)
+    }
+
     return (
         <View style={styles.chat}>
+            {/* displays the user avatar profile */}
             <Image source={item.image} style={styles.avatar} />
             <View style={styles.details}>
-                <Text style={styles.name}>{item.name}</Text>
-                <Text style={styles.message} numberOfLines={1}>{item.message}</Text>
-            </View>
-            <View style={styles.right}>
-                <Text style={styles.time}>{item.time}</Text>
-                {item.status === "read" && (
-                    <CheckCheck size={18} color="#F8641F" />
-                )}
-                {item.status === "unread" && item.count > 0 && (
-                    <View style={styles.messageCount}>
-                        <Text style={styles.count}>{item.count}</Text>
-                    </View>
-                )}
+                {/* displays the contact name and message time  */}
+                <View style={styles.nameTime}>
+                    <Text style={styles.name}>{item.name}</Text>
+                    <Text style={styles.time}>{item.time}</Text>
+                </View>
+                <View style={styles.messageAction}>
+                    <Text style={styles.message} numberOfLines={1}>{message}</Text>
+                    {/*  double check marks for delivered  messages */}
+                    {item.status === "delivered" && (
+                        <CheckCheck size={18} color="#F8641F" />
+                    )}
+                    {/* unread message count  */}
+                    {item.status === "unread" && item.count > 0 && (
+                        <View style={styles.messageCount}>
+                            <Text style={styles.count}>{item.count}</Text>
+                        </View>
+                    )}
+                </View>
             </View>
         </View>
     )
@@ -63,12 +86,22 @@ const styles = StyleSheet.create({
     },
     message: {
         fontSize: 10,
-        color: "gray"
+        color: "gray",
+        flex: 1
+    },
+    nameTime: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
     },
     messageAction: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
+    },
+    coloredText: {
+        fontWeight: 'bold',
+        color: '#F8641F'
     },
     time: {
         fontSize: 14,

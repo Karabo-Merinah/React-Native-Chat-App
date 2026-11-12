@@ -2,25 +2,32 @@ import { Plus } from "lucide-react-native"
 import { FlatList, Pressable, StyleSheet, View } from "react-native"
 import ChatItem from "./chatItem"
 
-
+//data for displaying
 export const chats = [
-    { id: 1, image: require("../../assets/images/avatar_images/grandpa_avatar.png"), name: "Faza Dzikrulloh", time: "14:30", message: "Typing...", count: 0,status:"none" },
-    { id: 2, image: require("../../assets/images/avatar_images/hatypo.png"), name: "Hatypo Studio", time: "14:30", message: "Faza Can you help me to do with new project...", count: 2,status:"unread" },
-    { id: 3, image: require("../../assets/images/avatar_images/3_avatar.png"), name: "Zhofran A", time: "14:00", message: "I think we should upgrade the social media...", count: 2 ,status:"unread"},
-    { id: 4, image: require("../../assets/images/avatar_images/dreadlocks_avatar.png"), name: "Vito Arvy", time: "13:40", message: "Okay adhit, I'll tell faza about it👍", count: 0 ,status:"read"},
-    { id: 5, image: require("../../assets/images/avatar_images/man_avatar.png"), name: "Raul", time: "Yesterday", message: "Thanks Raul!🙏✨", count: 0 ,status:"read"},
-    { id: 6, image: require("../../assets/images/avatar_images/man_with_beard.png"), name: "Farhan Bagas", time: "29/08/22", message: "Great work farhan!👍 I'll tell faza about logo...", count: 0 ,status:"read"},
-    { id: 7, image: require("../../assets/images/avatar_images/smiling_avatar.png"), name: "Abdull", time: "28/08/22", message: "Perfecto!🔥  I will check it later", count: 0,status:"read" },
-    { id: 8, image: require("../../assets/images/avatar_images/beard_man.png"), name: "Ibe hatypo", time: "27/08/22", message: "Nicely done bro!", count: 0,status:"read" }
+    { id: 1, image: require("../../assets/images/avatar_images/grandpa_avatar.png"), name: "Faza Dzikrulloh", time: "14:30", message: "Typing...", count: 0, status: "none" },
+    { id: 2, image: require("../../assets/images/avatar_images/hatypo.png"), name: "Hatypo Studio", time: "14:30", message: "Faza  Can you help me to do with new project...", count: 2, status: "unread" },
+    { id: 3, image: require("../../assets/images/avatar_images/3_avatar.png"), name: "Zhofran A", time: "14:00", message: "I think we should upgrade the social media...", count: 2, status: "unread" },
+    { id: 4, image: require("../../assets/images/avatar_images/dreadlocks_avatar.png"), name: "Vito Arvy", time: "13:40", message: "Okay adhit, I'll tell faza about it👍", count: 0, status: "delivered" },
+    { id: 5, image: require("../../assets/images/avatar_images/man_avatar.png"), name: "Raul", time: "Yesterday", message: "Thanks Raul!🙏✨", count: 0, status: "delivered" },
+    { id: 6, image: require("../../assets/images/avatar_images/man_with_beard.png"), name: "Farhan Bagas", time: "29/08/22", message: "Great work farhan!👍 I'll tell faza about logo...", count: 0, status: "delivered" },
+    { id: 7, image: require("../../assets/images/avatar_images/smiling_avatar.png"), name: "Abdull", time: "28/08/22", message: "Perfecto!🔥  I will check it later", count: 0, status: "delivered" },
+    { id: 8, image: require("../../assets/images/avatar_images/beard_man.png"), name: "Ibe hatypo", time: "27/08/22", message: "Nicely done bro!", count: 0, status: "delivered" }
 ]
 
 const ChatsList = () => {
     return (
         <View style={styles.container}>
-            <FlatList data={chats} renderItem={({ item }) =>
-                <ChatItem item={item} />} keyExtractor={(item) => item.id.toString()}
+            {/* displays chats using a scrollable list */}
+            <FlatList data={chats}
+                // passes each chat and its index to the ChatItem component
+                renderItem={({ item, index }) =>
+                    <ChatItem item={item} index={index} />}
+                keyExtractor={(item) => item.id.toString()}
+
+                //add a devider line between the chats 
                 ItemSeparatorComponent={() =>
                     <View style={styles.separator} />} />
+
             <Pressable style={styles.add} onPress={() => console.log('Add new contact')}>
                 <Plus size={18} color='white' />
             </Pressable>
@@ -42,7 +49,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         bottom: 40,
-        right: 20,
+        right: 30,
         backgroundColor: "#F8641F",
         width: 56,
         height: 56,
