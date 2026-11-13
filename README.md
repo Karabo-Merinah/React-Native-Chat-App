@@ -86,7 +86,6 @@ Shows interface used for chat data.
 **Functions:**
 - Defines the structure of chat objects.
 - Specifies properties such as contact name, image, message, time, unread count, and message status.
-- Provides type checking when passing chat data between components.
 - Stores avatar background colour values.
 
 ## React Native Components Used
@@ -105,6 +104,10 @@ Interactive components use `Pressable` to handle user input.
 For web buttons support mouse hover and click interactions.
 For androids  buttons support touch and press interactions.
 
+## App preview
+
+![App preview](./assets//images/1000337911.jpg)
+
 
 ## Installation and Setup
 
@@ -120,9 +123,7 @@ cd halodek-chat-ui-challenge
 
 npm install
 
-
 ### 4. Start the application
-
 
 npx expo start
 
