@@ -1,6 +1,8 @@
 import { Plus } from "lucide-react-native"
+import { useState } from "react"
 import { FlatList, Pressable, StyleSheet, View } from "react-native"
 import ChatItem from "./chatItem"
+
 
 //data for displaying
 export const chats = [
@@ -15,6 +17,7 @@ export const chats = [
 ]
 
 const ChatsList = () => {
+    const [hover, setHover] = useState(false)
     return (
         <View style={styles.container}>
             {/* displays chats using a scrollable list */}
@@ -25,16 +28,13 @@ const ChatsList = () => {
                 keyExtractor={(item) => item.id.toString()}
                 //add a devider line between the chats 
                 ItemSeparatorComponent={() =>
-                    <View style={styles.separator} />} 
-                    //adds a separator below the last chat 
-                    ListFooterComponent={()=>
-                        <View style={styles.separator}/>}
-                    />
-            <Pressable style={styles.add} onPress={() => console.log('Add new contact')}>
-                <Plus size={30} color='white' />
-            </Pressable>
-
-
+                    <View style={styles.separator} />}
+                //adds a separator below the last chat 
+                ListFooterComponent={() =>
+                    <View style={styles.separator} />}
+            />
+            <Pressable style={({ pressed }) => [styles.add, hover && styles.hovered, pressed && styles.hovered]}
+                onHoverIn={() => setHover(true)} onHoverOut={() => setHover(false)} onPress={() => console.log("Add new contact")}><Plus size={30} color="white" /></Pressable>
         </View>
 
     )
@@ -59,7 +59,12 @@ const styles = StyleSheet.create({
         width: 60,
         height: 60,
         borderRadius: 28
-
+    },
+    hovered: {
+        backgroundColor: "#D94F12"
+    },
+    addPressed: {
+        opacity: 0.5
     }
 })
 
