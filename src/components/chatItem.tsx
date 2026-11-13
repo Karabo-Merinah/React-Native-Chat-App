@@ -1,16 +1,7 @@
+import type { Chats } from "@/types/chat"
+import { avatarColors } from "@/types/chat"
 import { CheckCheck } from "lucide-react-native"
-import { Image, ImageSourcePropType, StyleSheet, Text, View } from "react-native"
-
-
-interface Chats {
-    id: number,
-    image: ImageSourcePropType,
-    name: string,
-    time: string,
-    message: string,
-    count: number,
-    status: string
-}
+import { Image, StyleSheet, Text, View } from "react-native"
 
 const ChatItem = ({ item, index }: { item: Chats, index: number }) => {
 
@@ -33,7 +24,9 @@ const ChatItem = ({ item, index }: { item: Chats, index: number }) => {
     return (
         <View style={styles.chat}>
             {/* displays the user avatar profile */}
-            <Image source={item.image} style={styles.avatar} />
+            <View style={[styles.avatarColor, { backgroundColor: avatarColors[index] }]}>
+                <Image source={item.image} style={styles.avatar} />
+            </View>
             <View style={styles.details}>
                 {/* displays the contact name and message time  */}
                 <View style={styles.nameTime}>
@@ -71,6 +64,14 @@ const styles = StyleSheet.create({
         height: 55,
         borderRadius: 28
     },
+    avatarColor:{
+        justifyContent:'center',
+        borderRadius:30,
+        width:55,
+        height:55,
+        alignItems:'center',
+        overflow:'hidden'
+    },
     right: {
         alignItems: "flex-end",
         gap: 8
@@ -80,14 +81,17 @@ const styles = StyleSheet.create({
         gap: 6
     },
     name: {
-        fontSize: 16,
-        fontWeight: "bold",
+        fontSize: 13,
+        fontFamily:'Roboto',
+        fontWeight: "medium",
         color: "#222222"
     },
     message: {
         fontSize: 10,
         color: "gray",
-        flex: 1
+        flex: 1,
+        fontFamily:'Roboto',
+        fontWeight:'regular'
     },
     nameTime: {
         flexDirection: 'row',
@@ -107,7 +111,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         flexDirection: 'row',
         color: "gray",
-        fontWeight:'light'
+        fontWeight: 500
     },
     messageCount: {
         backgroundColor: "#F8641F",

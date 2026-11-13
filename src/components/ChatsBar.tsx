@@ -6,7 +6,6 @@ const ChatsBar = () => {
     const [activeTab, setActiveTab] = useState("Chat")
 
     return (
-
         <View style={styles.bar}>
             {/* Chats tab */}
             <Pressable style={[styles.tab, activeTab === "Chat" && styles.active]} onPress={() => setActiveTab("Chat")} >
@@ -30,22 +29,24 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFECE5',
         marginHorizontal: 20,
         marginTop: 15,
-        marginBottom:15,
+        marginBottom: 15,
         borderRadius: 9,
         padding: 4,
-       
+
     },
     tab: {
         alignItems: 'center',
         flex: 1,
         justifyContent: 'center',
         paddingVertical: 10,
-        borderRadius: 6
+        borderRadius: 6,
+        fontFamily:'Roboto',
+        fontWeight:'medium'
     },
     tabwritings: {
         fontSize: 14,
         color: '#F8641F',
-        fontWeight:'bold'
+        fontWeight: 'bold'
     },
     activeTab: {
         color: '#FFFFFF',

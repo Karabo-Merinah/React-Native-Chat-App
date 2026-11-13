@@ -1,4 +1,4 @@
-import { EllipsisVerticalIcon, Search,CheckCheck} from "lucide-react-native"
+import { EllipsisVerticalIcon, Search, CheckCheck } from "lucide-react-native"
 import { Pressable, StyleSheet, Text, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 
@@ -7,7 +7,7 @@ const Header = () => {
     return (
         <SafeAreaView >
             <View style={styles.heading}>
-                <Text style={styles.title}>Halodek</Text>
+                <Text style={styles.title}>HALODEK</Text>
                 <View style={styles.buttons}>
                     <Pressable onPress={() => { console.log('search button pressed') }}>
                         <Search size={25} />
@@ -26,14 +26,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginHorizontal:20,
+        marginHorizontal: 20,
         paddingVertical: 10
     },
     title: {
+        fontFamily:'Roboto',
+        fontWeight:'bold',
         color: '#F8641F',
         fontSize: 25,
-        alignItems: 'flex-start',
-        textTransform: 'uppercase'
+        alignItems: 'flex-start'
     },
     buttons: {
         flexDirection: 'row',

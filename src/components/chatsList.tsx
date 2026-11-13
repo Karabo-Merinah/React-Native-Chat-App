@@ -25,12 +25,16 @@ const ChatsList = () => {
                 keyExtractor={(item) => item.id.toString()}
                 //add a devider line between the chats 
                 ItemSeparatorComponent={() =>
-                    <View style={styles.separator} />} />
+                    <View style={styles.separator} />} 
+                    //adds a separator below the last chat 
+                    ListFooterComponent={()=>
+                        <View style={styles.separator}/>}
+                    />
             <Pressable style={styles.add} onPress={() => console.log('Add new contact')}>
                 <Plus size={30} color='white' />
             </Pressable>
-            
-            
+
+
         </View>
 
     )
