@@ -106,7 +106,8 @@ const styles = StyleSheet.create({
     time: {
         fontSize: 14,
         flexDirection: 'row',
-        color: "gray"
+        color: "gray",
+        fontWeight:'light'
     },
     messageCount: {
         backgroundColor: "#F8641F",

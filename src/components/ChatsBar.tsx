@@ -3,19 +3,22 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 
 const ChatsBar = () => {
 
-    const [activeTab, setActiveTab] = useState("Chats")
+    const [activeTab, setActiveTab] = useState("Chat")
 
     return (
 
         <View style={styles.bar}>
-            <Pressable onPress={() => setActiveTab("Chats")}>
-                <Text style={styles.tabs}>Chats</Text>
+            {/* Chats tab */}
+            <Pressable style={[styles.tab, activeTab === "Chat" && styles.active]} onPress={() => setActiveTab("Chat")} >
+                <Text style={[styles.tabwritings, activeTab === "Chat" && styles.activeTab]}>Chat</Text>
             </Pressable>
-            <Pressable onPress={() => setActiveTab("Status")}>
-                <Text style={styles.tabs}>Status</Text>
+            {/* Calls tab */}
+            <Pressable style={[styles.tab, activeTab === "Status" && styles.active]} onPress={() => setActiveTab("Status")}>
+                <Text style={[styles.tabwritings, activeTab === "Status" && styles.activeTab]}>Status </Text>
             </Pressable>
-            <Pressable onPress={() => setActiveTab("Calls")}>
-                <Text style={styles.tabs}>Calls</Text>
+            {/* Contact tab */}
+            <Pressable style={[styles.tab, activeTab === "Calls" && styles.active]} onPress={() => setActiveTab("Calls")}>
+                <Text style={[styles.tabwritings, activeTab === "Calls" && styles.activeTab]}>Calls</Text>
             </Pressable>
         </View>
     )
@@ -24,13 +27,32 @@ const ChatsBar = () => {
 const styles = StyleSheet.create({
     bar: {
         flexDirection: "row",
-        justifyContent: "space-around",
-        padding: 25,
         backgroundColor: '#FFECE5',
-        borderRadius: 8,
+        marginHorizontal: 20,
+        marginTop: 15,
+        marginBottom:15,
+        borderRadius: 9,
+        padding: 4,
+       
+    },
+    tab: {
         alignItems: 'center',
-        marginTop: 10,
-        marginHorizontal:15
+        flex: 1,
+        justifyContent: 'center',
+        paddingVertical: 10,
+        borderRadius: 6
+    },
+    tabwritings: {
+        fontSize: 14,
+        color: '#F8641F',
+        fontWeight:'bold'
+    },
+    activeTab: {
+        color: '#FFFFFF',
+        fontWeight: 'bold'
+    },
+    active: {
+        backgroundColor: '#F3611E'
     },
     tabs: {
         fontSize: 12,
